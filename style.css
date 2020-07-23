@@ -42,6 +42,10 @@ body {
     background-color: #fff;
 }
 
+#delivered {
+    display: none;
+}
+
 .cart-item .form-control {
     background-color: #17a2b8;
     width: 65px;
@@ -63,9 +67,4 @@ body {
     float: right;
     padding: 10px 30px;
     font-size: 19px;
-}
-
-#phone-remove,
-#case-remove {
-    cursor: pointer;
 }

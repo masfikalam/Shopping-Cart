@@ -15,6 +15,7 @@
     <section>
         <div class="container">
             <div class="cart bg-info rounded">
+                <h1 id="delivered" class="text-center text-white">Your products will be delivered soon.</h1>
                 <div id="shopping" class="col-md-12 col-lg-10 mx-auto">
                     <div id="phone" class="cart-item">
                         <div class="row">
@@ -30,7 +31,7 @@
                                     <button id="phone-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
                                 <h5>$<span id="phone-price">1219</span></h5>
-                                <img id="phone-remove" src="img/remove.png" alt="" class="remove-item">
+                                <img onclick="removeAll('phone')" src="img/remove.png" alt="" class="remove-item">
                             </div>
                         </div>
                     </div>
@@ -48,7 +49,7 @@
                                     <button id="case-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
                                 <h5>$<span id="case-price">59</span></h5>
-                                <img id="case-remove" src="img/remove.png" alt="" class="remove-item">
+                                <img onclick="removeAll('case')" src="img/remove.png" alt="" class="remove-item">
                             </div>
                         </div>
                     </div>
@@ -101,12 +102,6 @@
             document.getElementById('phone-price').innerText = (1219 * pNew);
         });
 
-        // phone remove
-        let pRemove = document.getElementById('phone-remove');
-        pRemove.addEventListener('click', function() {
-            document.getElementById('phone').style.display = "none";
-        })
-
         // case minus
         let cMinus = document.getElementById('case-minus');
         cMinus.addEventListener('click', function() {
@@ -129,12 +124,6 @@
             document.getElementById('case-price').innerText = (59 * cNew);
         });
 
-        // case remove
-        let cRemove = document.getElementById('case-remove');
-        cRemove.addEventListener('click', function() {
-            document.getElementById('case').style.display = "none";
-        })
-
         // subtotal & total
         let sTotal = document.getElementById('subtotal');
         let total = document.getElementById('total');
@@ -143,6 +132,18 @@
             sTotal.innerText = parseFloat(document.getElementById('phone-price').innerText) + parseFloat(document.getElementById('case-price').innerText);
             total.innerText = parseFloat(sTotal.innerText) + 5;
         });
+
+        // all removed 
+        function removeAll(id) {
+            document.getElementById(id1).style.display = "none";
+        }
+
+        // checkout 
+        let checkBtn = document.getElementById('checkout');
+        checkBtn.addEventListener('click', function() {
+            document.getElementById('shopping').style.display = "none";
+            document.getElementById('delivered').style.display = "block";
+        })
     </script>
 </body>
 
