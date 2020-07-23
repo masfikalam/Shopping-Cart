@@ -14,9 +14,9 @@
 
     <section>
         <div class="container">
-            <div class="cart">
-                <div class="col-md-12 col-lg-10 mx-auto">
-                    <div class="cart-item">
+            <div class="cart bg-info rounded">
+                <div id="shopping" class="col-md-12 col-lg-10 mx-auto">
+                    <div id="phone" class="cart-item">
                         <div class="row">
                             <div class="col-md-7 center-item">
                                 <img src="img/product-1.png" alt="">
@@ -25,17 +25,17 @@
 
                             <div class="col-md-5 center-item">
                                 <div class="input-group number-spinner">
-                                    <button id="phone-plus" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                                    <input id="phone-amount" type="text" class="form-control text-center" value="1">
-                                    <button id="phone-minus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                                    <button id="phone-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                                    <span id="phone-amount" class="form-control text-center">1</span>
+                                    <button id="phone-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
-                                <h5>$1219</h5>
+                                <h5>$<span id="phone-price">1219</span></h5>
                                 <img id="phone-remove" src="img/remove.png" alt="" class="remove-item">
                             </div>
                         </div>
                     </div>
 
-                    <div class="cart-item">
+                    <div id="case" class="cart-item">
                         <div class="row">
                             <div class="col-md-7 center-item mx-auto">
                                 <img src="img/product-2.png" alt="">
@@ -43,12 +43,11 @@
                             </div>
                             <div class="col-md-5 center-item">
                                 <div class="input-group number-spinner">
-                                    <button id="case-plus" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                                    <input id="case-amount" type="text" class="form-control text-center" value="1">
-                                    <button id="case-minus" class="btn btn-default"><i class="fas fa-plus"></i></button>
-
+                                    <button id="case-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                                    <span id="case-amount" class="form-control text-center">1</span>
+                                    <button id="case-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
-                                <h5>$59</h5>
+                                <h5>$<span id="case-price">59</span></h5>
                                 <img id="case-remove" src="img/remove.png" alt="" class="remove-item">
                             </div>
                         </div>
@@ -64,14 +63,14 @@
                             </div>
 
                             <div class="col-md-4 status">
-                                <h5 id="subtotal">$1,278</h5>
-                                <h5 id="tax">$0</h5>
-                                <h5 id="total">$1,278</h5>
+                                <h5>$<span id="subtotal">1278</span></h5>
+                                <h5 class="text-danger">+ $<span id="tax">5</span></h5>
+                                <h5>$<span id="total">1283</span></h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 pt-4 pb-4">
-                        <button id="checkout" type="button" class="btn btn-success check-out">Check Out</button>
+                        <button id="checkout" type="button" class="btn btn-dark check-out">Check Out</button>
                     </div>
                 </div>
             </div>
@@ -80,6 +79,70 @@
 
     <!-- scripts -->
     <script>
+        // phone minus
+        let pMinus = document.getElementById('phone-minus');
+        pMinus.addEventListener('click', function() {
+            let pAmount = document.getElementById('phone-amount').innerText;
+            let pFloat = parseFloat(pAmount);
+            if (pFloat <= 0) {} else {
+                let pNew = pFloat - 1;
+                document.getElementById('phone-amount').innerText = pNew;
+                document.getElementById('phone-price').innerText = (1219 * pNew);
+            }
+        });
+
+        // phone plus
+        let pPlus = document.getElementById('phone-plus');
+        pPlus.addEventListener('click', function() {
+            let pAmount = document.getElementById('phone-amount').innerText;
+            let pFloat = parseFloat(pAmount);
+            let pNew = pFloat + 1;
+            document.getElementById('phone-amount').innerText = pNew;
+            document.getElementById('phone-price').innerText = (1219 * pNew);
+        });
+
+        // phone remove
+        let pRemove = document.getElementById('phone-remove');
+        pRemove.addEventListener('click', function() {
+            document.getElementById('phone').style.display = "none";
+        })
+
+        // case minus
+        let cMinus = document.getElementById('case-minus');
+        cMinus.addEventListener('click', function() {
+            let cAmount = document.getElementById('case-amount').innerText;
+            let cFloat = parseFloat(cAmount);
+            if (cFloat <= 0) {} else {
+                let cNew = cFloat - 1;
+                document.getElementById('case-amount').innerText = cNew;
+                document.getElementById('case-price').innerText = (59 * cNew);
+            }
+        });
+
+        // case plus
+        let cPlus = document.getElementById('case-plus');
+        cPlus.addEventListener('click', function() {
+            let cAmount = document.getElementById('case-amount').innerText;
+            let cFloat = parseFloat(cAmount);
+            let cNew = cFloat + 1;
+            document.getElementById('case-amount').innerText = cNew;
+            document.getElementById('case-price').innerText = (59 * cNew);
+        });
+
+        // case remove
+        let cRemove = document.getElementById('case-remove');
+        cRemove.addEventListener('click', function() {
+            document.getElementById('case').style.display = "none";
+        })
+
+        // subtotal & total
+        let sTotal = document.getElementById('subtotal');
+        let total = document.getElementById('total');
+        let tParent = sTotal.parentNode.parentNode.parentNode.parentNode.parentNode;
+        tParent.addEventListener('click', function() {
+            sTotal.innerText = parseFloat(document.getElementById('phone-price').innerText) + parseFloat(document.getElementById('case-price').innerText);
+            total.innerText = parseFloat(sTotal.innerText) + 5;
+        });
     </script>
 </body>
 
