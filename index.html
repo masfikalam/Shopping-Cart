@@ -80,48 +80,54 @@
 
     <!-- scripts -->
     <script>
+        function phoneAmountChange(isIncrease) {
+            let pAmount = document.getElementById('phone-amount').innerText;
+            let pFloat = parseFloat(pAmount);
+            let pNew;
+            if (isIncrease == true) {
+                pNew = pFloat + 1;
+            } else if (isIncrease == false) {
+                pNew = pFloat - 1;
+            }
+            document.getElementById('phone-amount').innerText = pNew;
+            document.getElementById('phone-price').innerText = (1219 * pNew);
+        }
+
+        function caseAmountChange(isIncrease) {
+            let cAmount = document.getElementById('case-amount').innerText;
+            let cFloat = parseFloat(cAmount);
+            let cNew;
+            if (isIncrease == true) {
+                cNew = cFloat + 1;
+            } else if (isIncrease == false) {
+                cNew = cFloat - 1;
+            }
+            document.getElementById('case-amount').innerText = cNew;
+            document.getElementById('case-price').innerText = (59 * cNew);
+        }
+
         // phone minus
         let pMinus = document.getElementById('phone-minus');
         pMinus.addEventListener('click', function() {
-            let pAmount = document.getElementById('phone-amount').innerText;
-            let pFloat = parseFloat(pAmount);
-            if (pFloat <= 0) {} else {
-                let pNew = pFloat - 1;
-                document.getElementById('phone-amount').innerText = pNew;
-                document.getElementById('phone-price').innerText = (1219 * pNew);
-            }
+            phoneAmountChange(false);
         });
 
         // phone plus
         let pPlus = document.getElementById('phone-plus');
         pPlus.addEventListener('click', function() {
-            let pAmount = document.getElementById('phone-amount').innerText;
-            let pFloat = parseFloat(pAmount);
-            let pNew = pFloat + 1;
-            document.getElementById('phone-amount').innerText = pNew;
-            document.getElementById('phone-price').innerText = (1219 * pNew);
+            phoneAmountChange(true);
         });
 
         // case minus
         let cMinus = document.getElementById('case-minus');
         cMinus.addEventListener('click', function() {
-            let cAmount = document.getElementById('case-amount').innerText;
-            let cFloat = parseFloat(cAmount);
-            if (cFloat <= 0) {} else {
-                let cNew = cFloat - 1;
-                document.getElementById('case-amount').innerText = cNew;
-                document.getElementById('case-price').innerText = (59 * cNew);
-            }
+            caseAmountChange(false);
         });
 
         // case plus
         let cPlus = document.getElementById('case-plus');
         cPlus.addEventListener('click', function() {
-            let cAmount = document.getElementById('case-amount').innerText;
-            let cFloat = parseFloat(cAmount);
-            let cNew = cFloat + 1;
-            document.getElementById('case-amount').innerText = cNew;
-            document.getElementById('case-price').innerText = (59 * cNew);
+            caseAmountChange(true);
         });
 
         // subtotal & total
