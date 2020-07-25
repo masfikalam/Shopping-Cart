@@ -65,8 +65,8 @@
 
                             <div class="col-md-4 status">
                                 <h5>$<span id="subtotal">1278</span></h5>
-                                <h5 class="text-danger">+ $<span id="tax">5</span></h5>
-                                <h5>$<span id="total">1283</span></h5>
+                                <h5 class="text-danger">+ <span id="tax">1.5</span>%</h5>
+                                <h5>$<span id="total">1297.2</span></h5>
                             </div>
                         </div>
                     </div>
@@ -94,16 +94,19 @@
             }
             document.getElementById(id1).innerText = newAmount;
             document.getElementById(id2).innerText = (price * newAmount);
+            calcTotal();
         }
 
-        // subtotal & total
-        let sTotal = document.getElementById('subtotal');
-        let total = document.getElementById('total');
-        let tParent = sTotal.parentNode.parentNode.parentNode.parentNode.parentNode;
-        tParent.addEventListener('click', function() {
-            sTotal.innerText = parseFloat(document.getElementById('phone-price').innerText) + parseFloat(document.getElementById('case-price').innerText);
-            total.innerText = parseFloat(sTotal.innerText) + 5;
-        });
+        // total calculation
+        function calcTotal() {
+            let pPrice = parseFloat(document.getElementById('phone-price').innerText);
+            let cPrice = parseFloat(document.getElementById('case-price').innerText);
+            let tax = parseFloat(document.getElementById('tax').innerText);
+            let subTotalPrice = pPrice + cPrice;
+            let totalPrice = subTotalPrice + (subTotalPrice * (tax / 100));
+            document.getElementById('subtotal').innerText = subTotalPrice;
+            document.getElementById('total').innerText = totalPrice.toFixed(1);
+        }
 
         // all removed 
         function removeAll(id) {
