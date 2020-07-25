@@ -26,9 +26,9 @@
 
                             <div class="col-md-5 center-item">
                                 <div class="input-group number-spinner">
-                                    <button id="phone-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                                    <button onclick="phoneAmountChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                                     <span id="phone-amount" class="form-control text-center">1</span>
-                                    <button id="phone-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                                    <button onclick="phoneAmountChange(true);" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
                                 <h5>$<span id="phone-price">1219</span></h5>
                                 <img onclick="removeAll('phone')" src="img/remove.png" alt="" class="remove-item">
@@ -44,9 +44,9 @@
                             </div>
                             <div class="col-md-5 center-item">
                                 <div class="input-group number-spinner">
-                                    <button id="case-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                                    <button onclick="caseAmountChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                                     <span id="case-amount" class="form-control text-center">1</span>
-                                    <button id="case-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                                    <button onclick="caseAmountChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
                                 <h5>$<span id="case-price">59</span></h5>
                                 <img onclick="removeAll('case')" src="img/remove.png" alt="" class="remove-item">
@@ -109,31 +109,7 @@
             }
             document.getElementById('case-amount').innerText = cNew;
             document.getElementById('case-price').innerText = (59 * cNew);
-        }
-
-        // phone minus
-        let pMinus = document.getElementById('phone-minus');
-        pMinus.addEventListener('click', function() {
-            phoneAmountChange(false);
-        });
-
-        // phone plus
-        let pPlus = document.getElementById('phone-plus');
-        pPlus.addEventListener('click', function() {
-            phoneAmountChange(true);
-        });
-
-        // case minus
-        let cMinus = document.getElementById('case-minus');
-        cMinus.addEventListener('click', function() {
-            caseAmountChange(false);
-        });
-
-        // case plus
-        let cPlus = document.getElementById('case-plus');
-        cPlus.addEventListener('click', function() {
-            caseAmountChange(true);
-        });
+        };
 
         // subtotal & total
         let sTotal = document.getElementById('subtotal');
