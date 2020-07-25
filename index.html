@@ -84,20 +84,25 @@
             let pAmount = document.getElementById('phone-amount').innerText;
             let pFloat = parseFloat(pAmount);
             let pNew;
-            if (isIncrease == true) {
+            if (pFloat <= 0) {
+                pNew = 0;
+            } else if (isIncrease == true) {
                 pNew = pFloat + 1;
             } else if (isIncrease == false) {
                 pNew = pFloat - 1;
             }
             document.getElementById('phone-amount').innerText = pNew;
             document.getElementById('phone-price').innerText = (1219 * pNew);
+
         }
 
         function caseAmountChange(isIncrease) {
             let cAmount = document.getElementById('case-amount').innerText;
             let cFloat = parseFloat(cAmount);
             let cNew;
-            if (isIncrease == true) {
+            if (cFloat <= 0) {
+                cNew = 0;
+            } else if (isIncrease == true) {
                 cNew = cFloat + 1;
             } else if (isIncrease == false) {
                 cNew = cFloat - 1;
@@ -141,7 +146,7 @@
 
         // all removed 
         function removeAll(id) {
-            document.getElementById(id1).style.display = "none";
+            document.getElementById(id).style.display = "none";
         }
 
         // checkout 
