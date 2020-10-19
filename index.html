@@ -31,7 +31,7 @@
                                     <button onclick="amountChange(true, 'phone-amount', 'phone-price', 1219)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
                                 <h5>$<span id="phone-price">1219</span></h5>
-                                <img onclick="removeAll('phone')" src="img/remove.png" alt="" class="remove-item">
+                                <img onclick="removeAll('phone', 'phone-amount', 'phone-price')" src="img/remove.png" alt="" class="remove-item">
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                                     <button onclick="amountChange(true, 'case-amount', 'case-price', 59)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
                                 <h5>$<span id="case-price">59</span></h5>
-                                <img onclick="removeAll('case')" src="img/remove.png" alt="" class="remove-item">
+                                <img onclick="removeAll('case', 'case-amount', 'case-price')" src="img/remove.png" alt="" class="remove-item">
                             </div>
                         </div>
                     </div>
@@ -106,15 +106,23 @@
             let totalPrice = subTotalPrice + (subTotalPrice * (tax / 100));
             document.getElementById('subtotal').innerText = subTotalPrice;
             document.getElementById('total').innerText = totalPrice.toFixed(1);
+            if(totalPrice == 0) {
+                document.getElementById('checkout').style.display = 'none'
+            }
         }
 
         // all removed 
-        function removeAll(id) {
-            document.getElementById(id).style.display = "none";
+        function removeAll(id1, id2, id3) {
+            document.getElementById(id2).innerText = '0';
+            document.getElementById(id3).innerText = '0';
+            calcTotal()
+            document.getElementById(id1).style.display = "none";
         }
 
         // checkout 
-        let checkBtn = document.getElementById('checkout');
+        const checkBtn = document.getElementById('checkout');
+        const total = parseFloat(document.getElementById('total').innerText);
+        
         checkBtn.addEventListener('click', function() {
             document.getElementById('shopping').style.display = "none";
             document.getElementById('delivered').style.display = "block";
